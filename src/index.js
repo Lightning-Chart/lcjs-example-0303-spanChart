@@ -21,7 +21,9 @@ const {
     Themes,
 } = lcjs
 
-const lc = lightningChart()
+const lc = lightningChart({
+            resourcesBaseUrl: new URL(document.head.baseURI).origin + new URL(document.head.baseURI).pathname + 'resources/',
+        })
 
 // Titles for span
 const titles = [
