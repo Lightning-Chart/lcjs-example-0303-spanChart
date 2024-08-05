@@ -2,7 +2,7 @@
  * LightningChartJS example that showcases creation of a Span-chart.
  */
 // Import LightningChartJS
-const lcjs = require('@arction/lcjs')
+const lcjs = require('@lightningchart/lcjs')
 
 // Extract required parts from LightningChartJS.
 const {
@@ -12,7 +12,6 @@ const {
     emptyLine,
     emptyFill,
     AxisTickStrategies,
-    ColorPalettes,
     SolidLine,
     UIOrigins,
     UIElementBuilders,
@@ -50,10 +49,7 @@ let spanChart
             })
             .setTitle('Conference Room Reservations')
             .setMouseInteractions(false)
-            // Disable default AutoCursor
-            .setAutoCursorMode(0)
-            .setPadding({ right: '2' })
-        const rectangles = chart.addRectangleSeries()
+            .setCursorMode(undefined)
 
         const axisX = chart
             .getDefaultAxisX()
@@ -124,7 +120,7 @@ let spanChart
                 }
                 fitAxes()
                 // Return figure
-                return rectangles.add(rectDimensions)
+                return chart.addRectangleSeries().add(rectDimensions)
             }
 
             // Add custom tick for category
@@ -160,12 +156,6 @@ const categories = [
     '20 chair room',
     'Conference Hall',
 ].map((name) => chart.addCategory(name))
-const colorPalette = ColorPalettes.flatUI(categories.length)
-const fillStyles = categories.map((_, i) => new SolidFill({ color: colorPalette(i) }))
-const strokeStyle = new SolidLine({
-    fillStyle: new SolidFill({ color: ColorRGBA(0, 0, 0) }),
-    thickness: 2,
-})
 const spans = [
     [
         [10, 13],
@@ -185,7 +175,7 @@ const spans = [
 let index = 0
 spans.forEach((values, i) => {
     values.forEach((value, j) => {
-        categories[i].addSpan(i, value[0], value[1], index).setFillStyle(fillStyles[i]).setStrokeStyle(strokeStyle)
+        categories[i].addSpan(i, value[0], value[1], index)
         index = index + 1
     })
 })
