@@ -48,18 +48,16 @@ let spanChart
                 theme: Themes[new URLSearchParams(window.location.search).get('theme') || 'darkGold'] || undefined,
             })
             .setTitle('Conference Room Reservations')
-            .setMouseInteractions(false)
+            .setUserInteractions(undefined)
             .setCursorMode(undefined)
 
         const axisX = chart
             .getDefaultAxisX()
-            .setMouseInteractions(false)
             // Hide default ticks, instead rely on CustomTicks.
             .setTickStrategy(AxisTickStrategies.Empty)
 
         const axisY = chart
             .getDefaultAxisY()
-            .setMouseInteractions(false)
             .setTitle('Conference Room')
             // Hide default ticks, instead rely on CustomTicks.
             .setTickStrategy(AxisTickStrategies.Empty)
@@ -120,7 +118,7 @@ let spanChart
                 }
                 fitAxes()
                 // Return figure
-                return chart.addRectangleSeries().add(rectDimensions)
+                return chart.addRectangleSeries().add(rectDimensions).setCornerRadius(10)
             }
 
             // Add custom tick for category
