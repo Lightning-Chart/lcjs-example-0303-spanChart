@@ -51,6 +51,7 @@ let spanChart
             .setTitle('Conference Room Reservations')
             .setUserInteractions(undefined)
             .setCursorMode(undefined)
+            .setPadding({ right: 25 })
 
         const axisX = chart
             .getDefaultAxisX()
@@ -109,9 +110,9 @@ let spanChart
                 spanText.addElement(
                     UIElementBuilders.TextBox.addStyler((textBox) =>
                         textBox
-                            .setTextFont((fontSettings) => fontSettings.setSize(13))
+                            .setTextFont((fontSettings) => fontSettings.setSize(13).setWeight('500'))
                             .setText(titles[index])
-                            .setTextFillStyle(new SolidFill().setColor(ColorRGBA(255, 255, 255))),
+                            .setTextFillStyle(new SolidFill().setColor(ColorRGBA(60, 60, 60))),
                     ),
                 )
                 if (index != i) {
